@@ -1,6 +1,8 @@
-# Data structures and algorithms in Ruby
+# Data structures and algorithms
 
-Teaching myself classic CS101 material in Ruby.
+Teaching myself classic CS101 material.
+
+I'm learning the material in Python, writing solutions to the problems in Ruby, and then translating the answers from Python into Ruby. :)
 
 ## Curriculum to cover:
 
