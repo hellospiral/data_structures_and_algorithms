@@ -27,7 +27,7 @@ def reverse_2(head)
   next_node = nil
 
   while current do
-    # be sure to copy the current.nextnode to variable before overwriting to previous
+    # copy current.nextnode to variable
     next_node = current.nextnode
     current.nextnode = previous
     previous = current
