@@ -1,7 +1,9 @@
 class BinaryHeap
+  attr_accessor :heap_list, :current_size
+
   def initialize
-    heap_list = [0]
-    current_size = 0
+    @heap_list = [0]
+    @current_size = 0
   end
 
   def perc_up(i)
@@ -16,20 +18,20 @@ class BinaryHeap
   end
 
   def insert(k)
-    self.heap_list.append(k)
+    self.heap_list.push(k)
     self.current_size += 1
     self.perc_up(self.current_size)
   end
 
   def perc_down(i)
     while (i * 2) <= self.current_size do
-      mc = self.min_child(i)
-      if self.heap_list[i] > self.heap_list[mc]
+      min_child = self.min_child(i)
+      if self.heap_list[i] > self.heap_list[min_child]
         tmp = self.heap_list[i]
-        self.heap_list[i] = self.heap_list[mc]
-        self.heap_list[mc] = tmp
+        self.heap_list[i] = self.heap_list[min_child]
+        self.heap_list[min_child] = tmp
       end
-      i = mc
+      i = min_child
     end
   end
 
