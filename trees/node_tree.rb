@@ -29,3 +29,27 @@ class BinaryTree
     end
   end
 end
+
+def preorder(tree)
+  if tree
+    puts tree.key
+    preorder(tree.left_child)
+    preorder(tree.right_child)
+  end
+end
+
+def postorder(tree)
+  if tree
+    preorder(tree.left_child)
+    preorder(tree.right_child)
+    puts tree.key
+  end
+end
+
+def inorder(tree)
+  if tree
+    inorder(tree.left_child)
+    puts tree.key
+    inorder(tree.right_child)
+  end
+end
