@@ -45,11 +45,52 @@ class TreeNode
       @right_child.parent = self
     end
   end
+
+  def find_successor
+    succ = nil
+    if @right_child
+      succ = @right_child.find_min
+    else
+      if @parent
+        if self.is_left_child?
+          succ = @parent
+        else
+          @parent.right_child = nil
+          succ = @parent.find_successor
+          @parent.right_child = self
+        end
+      end
+    end
+  end
+
+  def find_min
+    current = self
+    while current.left_child
+      current = current.left_child
+    end
+    return current
+  end
+
+  # def __iter__
+  #   if self
+  #     if @left_child
+  #       @left_child.each do |elem|
+  #         puts elem.key
+  #       end
+  #     end
+  #     puts @key
+  #     if @right_child
+  #       @right_child.each do |elem|
+  #         puts elem.key
+  #       end
+  #     end
+  #   end
+  # end
 end
 
 
 class BinarySearchTree
-  attr_reader :root
+  attr_reader :root, :size
 
   def initialize
     @root = nil
@@ -131,6 +172,71 @@ class BinarySearchTree
       return true
     else
       return false
+    end
+  end
+
+  def delete(key)
+    if @size > 1
+      node_to_remove = self._get(key, @root)
+      if node_to_remove
+        self.remove(node_to_remove)
+        @size -= 1
+      else
+        raise 'Error, key not in tree'
+      end
+    elsif @size == 1 && @root.key == key
+      @root = nil
+      @size -= 1
+    else
+      raise 'Error, key not in tree'
+    end
+  end
+
+  def remove(current_node)
+    # node has no children
+    if current_node.is_leaf?
+      if current_node == current_node.parent.left_child
+        current_node.parent.left_child = nil
+      else
+        current_node.parent.right_child = nil
+      end
+    # node has both children
+    elsif current_node.has_both_children?
+      succ = current_node.find_successor
+      succ.splice_out
+      current_node.key = succ.key
+      current_node.payload = succ.payload
+    # node has one child
+    else
+      if current_node.left_child
+        if current_node.is_left_child?
+          current_node.left_child.parent = current_node.parent
+          current_node.parent.left_child = current_node.left_child
+        elsif current_node.is_right_child?
+          current_node.left_child.parent = current_node.parent
+          current_node.parent.right_child = current_node.left_child
+        else
+          current_node.replace_node_data(current_node.left_child.key,
+            current_node.left_child.payload,
+            currentNode.left_child.left_child,
+            currentNode.left_child.right_child
+          )
+        end
+      else # node has right_child
+        if current_node.is_left_child?
+          current_node.right_child.parent = current_node.parent
+          current_node.parent.left_child = current_node.right_child
+        elsif current_node.is_right_child?
+          current_node.right_child.parent = current_node.parent
+          current_node.parent.right_child = current_node.right_child
+        else
+          current_node.replace_node_data(current_node.right_child.key,
+            current_node.right_child.payload,
+            currentNode.right_child.left_child,
+            currentNode.right_child.right_child
+          )
+        end
+      end
     end
   end
 end
