@@ -1,6 +1,6 @@
 # Problem: Given a binary tree, check whether it's a binary search tree or not.
 
-def bst_check_2(tree)
+def bst_check(tree)
 
   current = tree
 
@@ -8,7 +8,7 @@ def bst_check_2(tree)
     if current.left_child.key >= current.key || current.right_child.key <= current.key
       return false
     end
-    unless bst_check_2(current.left_child) && bst_check_2(current.right_child)
+    unless bst_check(current.left_child) && bst_check(current.right_child)
       return false
     end
 
@@ -16,15 +16,15 @@ def bst_check_2(tree)
     if current.left_child.key >= current.key
       return false
     end
-    unless bst_check_2(current.left_child)
+    unless bst_check(current.left_child)
       return false
     end
-    
+
   elsif current.right_child
     if current.right_child.key <= current.key
       return false
     end
-    unless bst_check_2(current.right_child)
+    unless bst_check(current.right_child)
       return false
     end
   end
