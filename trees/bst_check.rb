@@ -1,30 +1,31 @@
 # Problem: Given a binary tree, check whether it's a binary search tree or not.
 
-def bst_check(tree)
+def bst_check_2(tree)
 
-  current = tree.root
+  current = tree
 
-  if current.left.data == nil && current.right.data == nil
-    return false
-  end
-
-  if current.left
-    while current.left do
-      if current.left.data >= current.data
-        return false
-      end
-      current = current.left
+  if current.left_child && current.right_child
+    if current.left_child.key >= current.key || current.right_child.key <= current.key
+      return false
     end
-  end
+    unless bst_check_2(current.left_child) && bst_check_2(current.right_child)
+      return false
+    end
 
-  current = tree.root
-
-  if current.right
-    while current.right do
-      if current.right.data <= current.data
-        return false
-      end
-      current = current.right
+  elsif current.left_child
+    if current.left_child.key >= current.key
+      return false
+    end
+    unless bst_check_2(current.left_child)
+      return false
+    end
+    
+  elsif current.right_child
+    if current.right_child.key <= current.key
+      return false
+    end
+    unless bst_check_2(current.right_child)
+      return false
     end
   end
 

@@ -40,8 +40,8 @@ end
 
 def postorder(tree)
   if tree
-    preorder(tree.left_child)
-    preorder(tree.right_child)
+    postorder(tree.left_child)
+    postorder(tree.right_child)
     puts tree.key
   end
 end
