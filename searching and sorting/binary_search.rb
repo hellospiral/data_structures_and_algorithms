@@ -26,8 +26,12 @@ end
 def rec_bin_search(arr, ele)
   # array must already be sorted
 
-  if arr.length == 0
-    return false
+  if arr.length == 2
+    if arr[0] != ele and arr[1] != ele
+      return false
+    else
+      return true
+    end
   else
 
     mid = arr.length / 2
