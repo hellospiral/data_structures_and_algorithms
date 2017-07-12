@@ -1,5 +1,4 @@
 require 'set'
-require 'pry'
 
 def dfs(graph, start, visited = nil)
 
@@ -13,8 +12,7 @@ def dfs(graph, start, visited = nil)
   visited
 end
 
-# testing the method
-
+# testing
 graph = {'A': Set.new(['B', 'C']),
          'B': Set.new(['A', 'D', 'E']),
          'C': Set.new(['A', 'F']),
