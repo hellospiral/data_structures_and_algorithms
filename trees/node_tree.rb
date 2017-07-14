@@ -7,26 +7,20 @@ class BinaryTree
     @right_child = nil
   end
 
-  def insert_left(new_node)
-
-    if self.left_child == nil
-      self.left_child = BinaryTree.new(new_node)
-    else
-      t = BinaryTree.new(new_node)
-      t.left_child = self.left_child
-      self.left_child = t
+  def insert_left(key)
+    node = BinaryTree.new(key)
+    if @left_child
+      node.left_child = @left_child
     end
+    @left_child = node
   end
 
-  def insert_right(new_node)
-
-    if self.right_child == nil
-      self.right_child = BinaryTree.new(new_node)
-    else
-      t = BinaryTree.new(new_node)
-      t.right_child = self.right_child
-      self.right_child = t
+  def insert_right(key)
+    node = BinaryTree.new(key)
+    if @right_child
+      node.right_child = @right_child
     end
+    @right_child = node
   end
 end
 
