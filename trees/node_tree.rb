@@ -24,6 +24,12 @@ class BinaryTree
   end
 end
 
+tree = BinaryTree.new(50)
+tree.insert_left(25)
+tree.insert_right(75)
+tree.left_child.insert_left(20))
+bst_check(tree)
+
 def preorder(tree)
   if tree
     puts tree.key

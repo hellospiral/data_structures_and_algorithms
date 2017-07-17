@@ -26,7 +26,7 @@ describe BreadthFirstSearch do
 
     it 'returns the shortest path between two nodes' do
       path = BreadthFirstSearch.new(graph, node1)
-      expect(path.shortest_path_to(node5)).to eq([node1, node5])
+      expect(path.shortest_path_to(node3)).to eq([node1, node2, node3])
     end
   end
 end
